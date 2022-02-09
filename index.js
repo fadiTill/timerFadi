@@ -22,10 +22,41 @@ class Timer {
     }
 
 
+    // tick = () => {
+    //     // console.log('tick')
+    //     const timeLeft = parseFloat(this.timerInput.value);
+    //     this.timerInput.value = timeLeft - 1;
+    // }
+
+    // tick = () => {
+    //     const timeLeft = this.timerInput;
+    //     this.timerInput = timeLeft - 1;
+
+    // }
+
     tick = () => {
-        // console.log('tick')
-        const timeLeft = parseFloat(this.timerTime.value);
+
+        if (this.timeLeft <= 0){
+            this.pause();
+        } else {
+            this.timeLeft = this.timeLeft - 1;
+        }
+        
+       
     }
+    // The get syntax binds an object property to a function that will be called when that property is looked up.
+
+    get timeLeft () {
+        return parseFloat(this.timerInput.value);
+    }
+
+
+    // The set syntax binds an object property to a function to be called when there is an attempt to set that property.
+
+
+    set timeLeft(time){
+    this.timerInput.value = time;
+ }
 }
 
    const timerInput = document.querySelector('#timerTime');
