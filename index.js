@@ -77,14 +77,23 @@
    const timerInput = document.querySelector('#timerTime');
    const startButton = document.querySelector('#start');
    const pauseButton = document.querySelector('#pause');
+   const circle = document.querySelector('circle');
 
-   const timer = new Timer(timerInput, startButton, pauseButton,{
+   //calculate cirle  Perimeter
+  const perimeter = circle.getAttribute('r') * 2 * Math.PI;
+  circle.setAttribute('stroke-dasharray', perimeter);
+
+  let currentOffset = 0;
+  const timer = new Timer(timerInput, startButton, pauseButton,{
     onBegin() {
      console.log('started')
     },
  
     onProgress(){
-        console.log('ticked')
+        // console.log('ticked')
+       
+        circle.setAttribute('stroke-dashoffset', currentOffset);
+        currentOffset = currentOffset - 50
  
     },
     onEnd(){
