@@ -14,12 +14,12 @@ class Timer {
     }
     start = () => {
         if(this.onBegin){
-            this.onBegin();
+            this.onBegin(this.timeLeft);
         }
         // console.log('start the timer');
         // 1 second 
         this.tick();
-        this.intervalId = setInterval(this.tick, 1000);
+        this.intervalId = setInterval(this.tick, 50);
        
     }
 
@@ -48,9 +48,9 @@ class Timer {
               this.onEnd();
           } 
         } else {
-            this.timeLeft = this.timeLeft - 1;
+            this.timeLeft = this.timeLeft - 0.5;
             if(this.onProgress){
-                this.onProgress();
+                this.onProgress(this.timeLeft);
 
             }
         }
@@ -67,8 +67,16 @@ class Timer {
     // The set syntax binds an object property to a function to be called when there is an attempt to set that property.
 
 
+
+
+    // function financial(x) {
+    //     return Number.parseFloat(x).toFixed(2);
+    //   }
+      
+    //   console.log(financial(123.456));
+      // expected output: "123.46"
     set timeLeft(time){
-    this.timerInput.value = time;
+    this.timerInput.value = time.toFixed(2);
  }
 }
 

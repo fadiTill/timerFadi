@@ -82,18 +82,26 @@
    //calculate cirle  Perimeter
   const perimeter = circle.getAttribute('r') * 2 * Math.PI;
   circle.setAttribute('stroke-dasharray', perimeter);
-
-  let currentOffset = 0;
+  
+  let duration;
+//   let currentOffset = 0;
   const timer = new Timer(timerInput, startButton, pauseButton,{
-    onBegin() {
+    onBegin(totalTimeLeft) {
      console.log('started')
+     duration = totalTimeLeft
     },
  
-    onProgress(){
+    onProgress(timeLeft){
         // console.log('ticked')
        
-        circle.setAttribute('stroke-dashoffset', currentOffset);
-        currentOffset = currentOffset - 50
+        // circle.setAttribute('stroke-dashoffset', currentOffset);
+        // currentOffset = currentOffset - 1
+
+        circle.setAttribute('stroke-dashoffset',
+        perimeter * timeLeft / duration - perimeter
+        );
+        
+
  
     },
     onEnd(){
